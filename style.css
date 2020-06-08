@@ -7,6 +7,10 @@
 body{
     margin:0;
     padding:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 
@@ -128,14 +132,15 @@ button:active{
 
 
 @media screen and (min-width:768px){
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
     .container{
         height: 60vh;
         width: 50vw;
+    }
+}
+
+@media screen and (min-width:1025px){
+    .container{
+        height: 90vh;
+        width: 30vw;
     }
 }
