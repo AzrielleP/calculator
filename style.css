@@ -22,11 +22,12 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5b6a3', endColorstr='#ef7537',GradientType=0 ); /* IE6-9 */
 
     border-radius: 20px;
-    padding: 1em;
+    padding: 1.5em;
     display: grid;
     grid-template:repeat(7, 1fr) / repeat(4,1fr);
     row-gap: 8px;
     column-gap: 8px;
+    box-shadow: inset 0 0 5px #896A6A;
 }
 
 
@@ -44,6 +45,8 @@ body{
     row-gap: 1em;
     justify-items: right;
     align-items: center;
+    margin-bottom: 1em;
+    box-shadow: inset 0 0 5px #000000;
 }
 
 .equation{
@@ -51,14 +54,15 @@ body{
 }
 
 .inputAndResult{
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-weight: bolder;
 }
 
 
 /* =============  BUTTONS ============= */
 button{
-    font: 1.4em "Roboto Mono", monospace;
+    font: 1.6em "Roboto Mono", monospace;
+    font-weight: bold;
     border: none;
     border-radius: 10px;
 }
@@ -105,7 +109,6 @@ button:focus{
     grid-template-columns: repeat(3, 1fr);
     row-gap: 10px;
     column-gap: 10px;
-    
 }
 
 .numbers button{
@@ -121,5 +124,18 @@ button:active{
     box-shadow: none;
     position: relative;
     top: 5px;
+}
 
+
+@media screen and (min-width:768px){
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container{
+        height: 60vh;
+        width: 50vw;
+    }
 }
