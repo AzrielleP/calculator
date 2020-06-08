@@ -61,12 +61,11 @@ button{
     font: 1.4em "Roboto Mono", monospace;
     border: none;
     border-radius: 10px;
-    transition: all 0.3s ease;
-    
 }
 
 button:focus{
     outline: none;
+    
 }
 
 .special{
@@ -74,15 +73,14 @@ button:focus{
     grid-row: 3;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 8px;
-    column-gap: 8px;
+    row-gap: 10px;
+    column-gap: 10px;
 }
 
 .special button{
     background-color: #896A6A;
     color: #F1EBEB;
-    box-shadow: 0px 5px rgb(65, 65, 65);
-    
+    box-shadow: 0px 5px rgb(65, 65, 65); 
 }
 
 .operators{
@@ -90,8 +88,8 @@ button:focus{
     grid-row: 3/8;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 2fr;
-    row-gap: 8px;
-    column-gap: 8px;
+    row-gap: 10px;
+    column-gap: 10px;
     
 }
 
@@ -105,8 +103,8 @@ button:focus{
     grid-row: 4/8;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 8px;
-    column-gap: 8px;
+    row-gap: 10px;
+    column-gap: 10px;
     
 }
 
@@ -117,4 +115,11 @@ button:focus{
 
 .numbers button ~ .equals{
     background-color: #D9D9D9;
+}
+
+button:active{
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+
 }
