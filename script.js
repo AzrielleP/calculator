@@ -42,6 +42,9 @@ special.addEventListener("click", doSpecial =>{
         if (doSpecial.target.className == "clear"){
             clear();
         }
+        else if (doSpecial.target.className == "delete"){
+            del();
+        }
     }
     doSpecial.stopPropagation();
 })
@@ -51,6 +54,11 @@ function clear(){
     equation.textContent = "";
     inputAndResult.textContent = "";
     eqn = "";
+}
+
+function del(){
+    eqn = eqn.slice(0, eqn.length-1);
+    inputAndResult.textContent = eqn;
 }
 
 function operate(firstNum, secondNum, operator){
