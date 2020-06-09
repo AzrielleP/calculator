@@ -93,17 +93,24 @@ button:focus{
 
 .operation{
     grid-column: 4;
-    grid-row: 3/8;
+    grid-row: 3/7;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
     row-gap: 10px;
     column-gap: 10px;
-    
 }
 
-.operation button{
+.operation button,
+.result button{
     background-color: #D9D9D9;
     box-shadow: 0px 5px rgb(168, 168, 168);
+}
+
+.result{
+    grid-column: 4;
+    grid-row: 7;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .numbers{
@@ -118,10 +125,6 @@ button:focus{
 .numbers button{
     background-color: #F1EBEB;
     box-shadow: 0px 5px rgb(165, 165, 165);
-}
-
-.numbers button ~ .equals{
-    background-color: #D9D9D9;
 }
 
 button:active{
