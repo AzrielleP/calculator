@@ -18,7 +18,7 @@ numbers.addEventListener("click", getNum => {
 
 operators.addEventListener("click", getOptr=>{
     if(getOptr.target !== getOptr.currentTarget){
-        eqn += getOptr.target.textContent;
+        eqn += getOptr.target.className;
         inputAndResult.textContent = eqn;
     }
     getOptr.stopPropagation();
@@ -33,7 +33,8 @@ result.addEventListener("click", getResult=>{
         let op = eqn.match(/[\+\-\*\/]/g);
         let firstNum = Number(split[0]);
         let secondNum = Number(split[1]);
-        operate(firstNum, secondNum, op[0]);
+        inputAndResult.textContent = operate(firstNum, secondNum, op[0]);
+        eqn = operate(firstNum, secondNum, op[0]);
     }
 })
 
@@ -74,8 +75,11 @@ function operate(firstNum, secondNum, operator){
     }
     else if (operator == "/"){
         results = divide(firstNum, secondNum);
+        if (results == Infinity){
+            results = "Math ERROR"
+        }
     }
-    inputAndResult.textContent = results;
+    return results;
 }
 
 function add(addend1, addend2){
