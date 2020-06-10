@@ -6,18 +6,19 @@ let numbers = document.querySelector(".numbers");
 let result = document.querySelector(".result");
 
 let eqn = "";
-numbers.addEventListener("click", getNum => {
-        
+numbers.addEventListener("click", getNum => {  
     if(getNum.target !== getNum.currentTarget){
         eqn += getNum.target.textContent;
         inputAndResult.textContent = eqn;
     }
-   
     getNum.stopPropagation();
 })
 
 operators.addEventListener("click", getOptr=>{
     if(getOptr.target !== getOptr.currentTarget){
+        if (/[\+\-\*\/]/.test(eqn)){
+            del();
+        }
         eqn += getOptr.target.className;
         inputAndResult.textContent = eqn;
     }
@@ -26,17 +27,31 @@ operators.addEventListener("click", getOptr=>{
 
 result.addEventListener("click", getResult=>{
     if(getResult.target !== getResult.currentTarget){
-     
         equation.textContent = eqn;
-        let split = eqn.split(/[\+\-\*\/]/g);
-        console.log(split);
-        let op = eqn.match(/[\+\-\*\/]/g);
-        let firstNum = Number(split[0]);
-        let secondNum = Number(split[1]);
+        let arrayEquation = convertEqn(eqn);
+
+        // Put the result in inputAndResult
         inputAndResult.textContent = operate(firstNum, secondNum, op[0]);
+        // Make the result to add when + is created
         eqn = operate(firstNum, secondNum, op[0]);
     }
 })
+
+function convertEqn(equation){
+    let numbers = equation.split(/[\+\-\*\/]/g);
+    let op = equation.match(/[\+\-\*\/]/g);
+    let arrayedEquation = [];
+
+    // If numbers includes a "" element, it means that there are two consec
+    if (numbers.includes("")) return "Syntax Error";
+    for (let i = 0; i < numbers.length; i++){
+        arrayedEquation.push(numbers[i]);
+        if(op[i] !== undefined){
+        arrayedEquation.push(op[i]);
+        }
+    }
+    return arrayedEquation;
+}
 
 special.addEventListener("click", doSpecial =>{
     if(doSpecial.target !== doSpecial.currentTarget){
@@ -74,10 +89,8 @@ function operate(firstNum, secondNum, operator){
         results = multiply(firstNum, secondNum);
     }
     else if (operator == "/"){
-        results = divide(firstNum, secondNum);
-        if (results == Infinity){
-            results = "Math ERROR"
-        }
+        if (secondNum == 0) results = "Math ERROR"
+        else results = divide(firstNum, secondNum);
     }
     return results;
 }
