@@ -13,7 +13,7 @@ let eqn = "";
 numbers.addEventListener("click", getNum => {  
     if(getNum.target !== getNum.currentTarget){
         eqn += getNum.target.textContent;
-        inputAndResult.textContent = eqn;
+        equation.textContent = eqn;
     }
     getNum.stopPropagation();
 })
@@ -24,7 +24,7 @@ operators.addEventListener("click", getOptr=>{
             del();
         }
         eqn += getOptr.target.textContent;
-        inputAndResult.textContent = eqn;
+        equation.textContent = eqn;
     }
     getOptr.stopPropagation();
 })
@@ -61,6 +61,7 @@ result.addEventListener("click", getResult=>{
 /* === Function Collection === */
 
 function calculate(arrayEquation){
+
     let loop = (arrayEquation.length -1) / 2;
     for (let i = 0; i < loop; i++){
         if(arrayEquation.includes("x") || arrayEquation.includes("/")){
@@ -87,6 +88,13 @@ function useOperate(array, op){
     let n = array.indexOf(op);
     let firstNum = Number(array[n-1]);
     let secondNum = Number(array[n+1]);
+    // Check if firstNum or secondNum has at most 1 decimal point
+    if (isNaN(firstNum) || isNaN(secondNum)){
+        inputAndResult.textContent = "Syntax Error";
+            equation.textContent = "";
+            eqn = "";
+            return;
+    }
     newArray.push(array.splice(n-1, 3, operate(firstNum, secondNum, op)));
     return  newArray;
 }
