@@ -68,8 +68,7 @@ result.addEventListener("click", (getResult) => {
   }
 });
 
-/* === Function Collection === */
-
+/* === Perform Calculations=== */
 function calculate(arrayEquation) {
   let loop = (arrayEquation.length - 1) / 2;
   for (let i = 0; i < loop; i++) {
