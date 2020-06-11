@@ -12,7 +12,7 @@ let eqn = "";
 /* === addEventListeners ===*/
 numbers.addEventListener("click", getNum => {  
     if(getNum.target !== getNum.currentTarget){
-        if (eqn.length == 35){
+        if (eqn.length == 20){
             equation.textContent = eqn;
         }
         else eqn += getNum.target.textContent;
@@ -23,7 +23,7 @@ numbers.addEventListener("click", getNum => {
 
 operators.addEventListener("click", getOptr=>{
     if(getOptr.target !== getOptr.currentTarget){
-        if (eqn.length == 35){
+        if (eqn.length == 5){
             equation.textContent = eqn;
         }
         if (/[\+\-x\/]/.test(eqn[eqn.length-1])){
@@ -33,7 +33,7 @@ operators.addEventListener("click", getOptr=>{
             else del();
 
         }
-        eqn += getOptr.target.textContent;
+        else eqn += getOptr.target.textContent;
         equation.textContent = eqn;
     }
     getOptr.stopPropagation();
@@ -124,8 +124,8 @@ function operate(firstNum, secondNum, operator){
         if (secondNum == 0) results = "Math ERROR"
         else results = firstNum / secondNum;;
     }
-    if(results.toString().length >12){
-        results = results.toPrecision(12);
+    if(results.toString().length >9){
+        results = results.toPrecision(9);
     };
     return results;
 }
