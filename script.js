@@ -12,7 +12,10 @@ let eqn = "";
 /* === addEventListeners ===*/
 numbers.addEventListener("click", getNum => {  
     if(getNum.target !== getNum.currentTarget){
-        eqn += getNum.target.textContent;
+        if (eqn.length == 35){
+            equation.textContent = eqn;
+        }
+        else eqn += getNum.target.textContent;
         equation.textContent = eqn;
     }
     getNum.stopPropagation();
@@ -20,8 +23,15 @@ numbers.addEventListener("click", getNum => {
 
 operators.addEventListener("click", getOptr=>{
     if(getOptr.target !== getOptr.currentTarget){
+        if (eqn.length == 35){
+            equation.textContent = eqn;
+        }
         if (/[\+\-x\/]/.test(eqn[eqn.length-1])){
-            del();
+            if(/e/.test(eqn)){
+                
+            }
+            else del();
+
         }
         eqn += getOptr.target.textContent;
         equation.textContent = eqn;
@@ -114,7 +124,10 @@ function operate(firstNum, secondNum, operator){
         if (secondNum == 0) results = "Math ERROR"
         else results = firstNum / secondNum;;
     }
-    return results.toString();
+    if(results.toString().length >12){
+        results = results.toPrecision(12);
+    };
+    return results;
 }
 
 function convertEqn(equation){
