@@ -9,35 +9,39 @@ let result = document.querySelector(".result");
 let eqn = "";
 
 
+
 /* === addEventListeners ===*/
-numbers.addEventListener("click", getNum => {  
-    if(getNum.target !== getNum.currentTarget){
-        if (eqn.length == 20){
-            equation.textContent = eqn;
-        }
-        else eqn += getNum.target.textContent;
+numbers.addEventListener("click", getNum);
+
+function getNum(event){  
+    if (eqn.length >= 30){
+        numbers.removeEventListener("click", getNum, false)
+        operators.removeEventListener("click", getOptr, false);
+    }
+    if(event.target !== event.currentTarget){
+        eqn += event.target.textContent;
         equation.textContent = eqn;
     }
-    getNum.stopPropagation();
-})
+    event.stopPropagation();
+    
+}
 
-operators.addEventListener("click", getOptr=>{
-    if(getOptr.target !== getOptr.currentTarget){
-        if (eqn.length == 5){
-            equation.textContent = eqn;
-        }
+operators.addEventListener("click", getOptr);
+
+function getOptr(event){
+    if (eqn.length >= 30){
+        numbers.removeEventListener("click", getNum, false)
+        operators.removeEventListener("click", getOptr, false);
+    }
+    if(event.target !== event.currentTarget){
         if (/[\+\-x\/]/.test(eqn[eqn.length-1])){
-            if(/e/.test(eqn)){
-                
-            }
-            else del();
-
+           del();
         }
-        else eqn += getOptr.target.textContent;
+        eqn += event.target.textContent;
         equation.textContent = eqn;
     }
-    getOptr.stopPropagation();
-})
+    event.stopPropagation();
+}
 
 special.addEventListener("click", doSpecial =>{
     if(doSpecial.target !== doSpecial.currentTarget){
@@ -64,7 +68,7 @@ result.addEventListener("click", getResult=>{
         // Put the result in inputAndResult
         inputAndResult.textContent = calculate(arrayEquation);
         // Make the result to add when + is created
-        eqn = calculate(arrayEquation);
+        eqn = Number(calculate(arrayEquation));
     }
 })
 
@@ -158,4 +162,3 @@ function del(){
     eqn = eqn.slice(0, eqn.length-1);
     inputAndResult.textContent = eqn;
 }
-
