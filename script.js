@@ -68,7 +68,9 @@ result.addEventListener("click", getResult=>{
         // Put the result in inputAndResult
         inputAndResult.textContent = calculate(arrayEquation);
         // Make the result to add when + is created
+        if (eqn !== ""){
         eqn = Number(calculate(arrayEquation));
+        }
     }
 })
 
@@ -82,7 +84,8 @@ function calculate(arrayEquation){
             useOperate(arrayEquation, checkPrecedence("x", "/", arrayEquation));
         }
         else if (arrayEquation.includes("+") || arrayEquation.includes("-")){
-            useOperate(arrayEquation, checkPrecedence("+", "-", arrayEquation));        }
+            useOperate(arrayEquation, checkPrecedence("+", "-", arrayEquation));        
+        }
     }
     return arrayEquation;
 }
@@ -125,12 +128,18 @@ function operate(firstNum, secondNum, operator){
         results = firstNum * secondNum;
     }
     else if (operator == "/"){
-        if (secondNum == 0) results = "Math ERROR"
+        if (secondNum == 0) {
+            results = "Math Error";
+            equation.textContent = "";
+            eqn = "";
+        }
         else results = firstNum / secondNum;;
     }
-    if(results.toString().length >9){
-        results = results.toPrecision(9);
-    };
+    if (typeof results == "number"){
+        if(results.toString().length >9){
+            results = results.toPrecision(9);
+        }
+    }
     return results;
 }
 
