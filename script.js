@@ -156,5 +156,5 @@ function clear() {
 
 function del() {
   eqn = eqn.slice(0, eqn.length - 1);
-  output.textContent = eqn;
+  equation.textContent = eqn;
 }
