@@ -60,8 +60,7 @@ const operate = (firstNum, secondNum, operator) => {
     results = firstNum * secondNum;
   } else if (operator === '/') {
     if (secondNum === 0) {
-      mathError();
-      return;
+      return 'Error';
     }
     results = firstNum / secondNum;
   }
@@ -131,7 +130,7 @@ const calculate = (arrayEquation) => {
 const pressEquals = () => {
   DOM.displayEquation(eqn);
   const arrayEquation = convertEqn(eqn);
-  result.textContent = calculate(arrayEquation);
+  calculate(arrayEquation) === 'Error' ? mathError() : result.textContent = calculate(arrayEquation);
 
   // Make the result to be added to the next operation
   if (eqn !== '') {
